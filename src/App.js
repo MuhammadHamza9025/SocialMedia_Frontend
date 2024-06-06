@@ -1,24 +1,41 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from './Pages/Navbar';
+import Home from './Pages/Home';
+import Login from './Pages/Login';
+import Signup from './Pages/Signup';
+import Posts from './Pages/Posts';
+import Addpost from './Pages/Addpost';
+import UserDetails from './Pages/UserDetails';
+import UserProfiles from './Pages/UserProfiles';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Navbar></Navbar>
+        {localStorage.getItem('auth-token') ?
+          <Routes>
+            <Route path='/login' element={<Login></Login>}></Route>
+            <Route path='/signup' element={<Signup></Signup>}></Route>
+            <Route path='/' element={<Home></Home>}></Route>
+            <Route path='/posts' element={<Posts></Posts>}></Route>
+            <Route path='/addpost' element={<Addpost></Addpost>}></Route>
+            <Route path='/user/:id' element={<UserDetails></UserDetails>}></Route>
+            <Route path='/users/:id' element={<UserProfiles></UserProfiles>}></Route>
+
+          </Routes>
+          :
+          <Routes>
+            <Route path='/' element={<Login></Login>}></Route>
+            <Route path='/login' element={<Login></Login>}></Route>
+            <Route path='/signup' element={<Signup></Signup>}></Route>
+
+          </Routes>
+        }
+      </BrowserRouter>
+    </>
   );
 }
 
