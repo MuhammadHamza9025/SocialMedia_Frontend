@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import image from '../Assests/images.png'
 
-const MainHome = () => {
+const MainHome = ({ data }) => {
 
     const [posts, setposts] = useState([])
     const [comment, setcomment] = useState('')
     const [post, setpost] = useState('')
     const [commentopen, setcommentopen] = useState(false)
     const [iid, setid] = useState()
+    const [deletemenu, setdeletemenu] = useState(false)
     const getallposts = async () => {
 
 
@@ -20,6 +21,7 @@ const MainHome = () => {
         })
         const res = await ftetc.json()
         setposts(res)
+
 
 
     }
@@ -87,15 +89,35 @@ const MainHome = () => {
 
     useEffect(() => {
         if (localStorage.getItem('auth-token')) { getallposts() }
+
+        // console.log(useridfordelete)
+
     }, [])
     useEffect(() => {
         getallposts()
+
     }, [getliked])
 
 
     const toggle = (id) => {
         commentid = id
     }
+
+    const handledelete = async (id) => {
+        const fetchdata = await fetch("http://localhost:9000/deleteposts", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": `${localStorage.getItem('auth-token')}`,
+            },
+            body: JSON.stringify({ id: id })
+
+
+
+        })
+
+    }
+    const useridfordelete = data.map((e) => e.id)
 
     return (
         <>
@@ -106,10 +128,27 @@ const MainHome = () => {
                         return (
                             <>
                                 <div className='border m-4     mt-10 bg-[#ffffff] rounded-lg'>
-                                    <div className='flex items-center mb-1 '>
-                                        <img className='m-4 w-[50px] h-[50px] rounded-full' src={item.postedby.image} alt="" />
-                                        <Link to={`/users/${item.postedby._id}`}> <span className=''>{item.postedby.name}</span></Link>
+                                    <div className=' flex justify-between'>
+                                        <div className='flex items-center mb-1'>
+                                            <img className='m-4 w-[50px] h-[50px] rounded-full' src={item.postedby.image} alt="" />
+                                            <Link to={`/users/${item.postedby._id}`}> <span className=''>{item.postedby.name}</span></Link>
+                                        </div>
+                                        {/*  */}
+                                        {useridfordelete == item.postedby.id &&
+                                            <div className='flex flex-col items-end  m-4  relative' onClick={() => setdeletemenu(!deletemenu)} >
+                                                <div className='mx-2 cursor-pointer '  >
+                                                    <button className='h-[6px] w-[6px] rounded-full bg-black'></button>
+                                                    <button className=' mx-1 h-[6px] w-[6px] rounded-full bg-black'></button>
+                                                    <button className='h-[6px] w-[6px] rounded-full bg-black'></button>
+                                                </div>
+                                                <div className={`${deletemenu ? 'flex' : 'hidden'}  absolute top-7 flex-col  bg-slate-100 text-xs  border px-4`} >
+                                                    <span className='p-1  cursor-pointer hover:font-bold     border-b-2 my-2' onClick={() => handledelete(item._id)}>Delete</span>
+                                                    <span className='p-1 cursor-pointer hover:font-bold '>Edit</span>
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
+
                                     <p className='my-2 mx-4 mt-3 font-semibold text-lg '>{item.title}</p>
                                     <p className='mx-4 w-[100%] mb-6'>{item.desc}</p>
                                     <img src={item.image} className='w-[100%]   object-center object-contain' alt="" />

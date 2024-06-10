@@ -1,23 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const Homeleft = () => {
-    const [data, setdata] = useState([])
+const Homeleft = ({ data }) => {
 
-    const fetchdata = async () => {
-        const fetchnn = await fetch("http://localhost:9000/login", {
-            headers: {
-                "auth-token": `${localStorage.getItem('auth-token')}`
-            }
-        })
-        const res = await fetchnn.json()
-        setdata(Array(res))
-        console.log(data)
 
-    }
-    useEffect(() => {
-        fetchdata()
-    }, [])
     return (
         <div className=' h-[300px]  mt-10 bg-[#ffffff] rounded-lg'>
             {data.map((item) => {

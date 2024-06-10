@@ -13,7 +13,7 @@ const HomeRight = () => {
             },
         })
         const res = await fetusers.json()
-        console.log(res)
+        // console.log(res)
         setallusers(res)
     }
     useEffect(() => {
