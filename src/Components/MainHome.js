@@ -7,7 +7,7 @@ const MainHome = ({ data }) => {
     const [posts, setposts] = useState([])
     const [comment, setcomment] = useState('')
     const [post, setpost] = useState('')
-    const [commentopen, setcommentopen] = useState(false)
+    const [commentopen, setcommentopen] = useState(null)
     const [iid, setid] = useState()
     const [deletemenu, setdeletemenu] = useState(false)
     const getallposts = async () => {
@@ -123,7 +123,7 @@ const MainHome = ({ data }) => {
         <>
             <div className='w-[49%] max-h-[100%]'>
                 {
-                    posts.map((item) => {
+                    posts.map((item, index) => {
 
                         return (
                             <>
@@ -155,7 +155,7 @@ const MainHome = ({ data }) => {
                                     <div className='flex justify-between mt-8'>
                                         <span className=' cursor-pointer' onClick={() => getliked(item._id)}><img src={image} className='h-[30px] mx-2' alt="" />
                                             <p className='mx-2 my-1 font-bold'>{item.likedby.length} Likes </p></span>
-                                        <span className='hover:bg-slate-300 flex items-center p-1 px-2 active:bg-slate-400 rounded-3xl'>{item.comment.length}<b className='cursor-pointer mx-2 ' onClick={() => setcommentopen(!commentopen)}>Comments</b></span>
+                                        <span className='hover:bg-slate-300 flex items-center p-1 px-2 active:bg-slate-400 rounded-3xl'>{item.comment.length}<b className='cursor-pointer mx-2 ' onClick={() => setcommentopen(commentopen === item._id ? null : item._id)}>Comments</b></span>
                                     </div>
 
                                     <div className={` ${commentopen ? 'flex-col scroll-smooth' : 'hidden'}`}>
