@@ -9,7 +9,7 @@ import Posts from './Pages/Posts';
 import Addpost from './Pages/Addpost';
 import UserDetails from './Pages/UserDetails';
 import UserProfiles from './Pages/UserProfiles';
-
+import Error from './Pages/Error';
 function App() {
   return (
     <>
@@ -24,6 +24,8 @@ function App() {
             <Route path='/addpost' element={<Addpost></Addpost>}></Route>
             <Route path='/user/:id' element={<UserDetails></UserDetails>}></Route>
             <Route path='/users/:id' element={<UserProfiles></UserProfiles>}></Route>
+            <Route path='*' element={<Error></Error>}></Route>
+
 
           </Routes>
           :
@@ -31,6 +33,8 @@ function App() {
             <Route path='/' element={<Login></Login>}></Route>
             <Route path='/login' element={<Login></Login>}></Route>
             <Route path='/signup' element={<Signup></Signup>}></Route>
+            <Route path='*' element={<Error></Error>}></Route>
+
 
           </Routes>
         }

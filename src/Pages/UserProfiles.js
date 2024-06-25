@@ -10,11 +10,20 @@ const UserProfiles = () => {
     const { id } = useParams()
     const [userdetails, setdetails] = useState([])
     const fetchuserdetailsdata = async () => {
-        const data = await fetch(`http://localhost:9000/user/${id}`)
+        const data = await fetch(`http://localhost:9000/user/${id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": `${localStorage.getItem('auth-token')}`,
+            },
+        })
         const res = await data.json()
+
         setdetails(Array(res))
+
         // console.log(res.map((e) => e.postedby.name))
         // console.log(Array(res.posts))
+        console.log(Array(res))
     }
 
     let newmsg;
@@ -32,10 +41,10 @@ const UserProfiles = () => {
 
         }).then((res) => res.json()).then((data) => msg = data)
         if (msg.success) {
-            alert("You are now following this user")
+
         }
         else {
-            alert(msg.message)
+            // alert(msg.message)
         }
 
         fetchuserdetailsdata()
@@ -57,6 +66,7 @@ const UserProfiles = () => {
     useEffect(() => {
         // textfol()
         fetchuserdetailsdata()
+
     }, [])
     return (
         <>
@@ -74,7 +84,8 @@ const UserProfiles = () => {
                                         <span><b>{e.userdetails.following ? e.userdetails.following.length : '0'}</b> Following</span>
                                         <span></span>
                                     </div>
-                                    <button onClick={() => follow(e.userdetails._id)}>{newmsg ? newmsg : 'Follow'}</button>
+                                    {e.check == false && <button onClick={() => follow(e.userdetails._id)} className='border rounded-3xl p-1 mt-6   font-semibold bg-opacity-80 px-4'>Follow</button>}
+                                    {e.check == true && <button onClick={() => follow(e.userdetails._id)} className='border rounded-3xl p-1 mt-6 bg-green-600 text-white font-semibold bg-opacity-80 px-4'>Following</button>}
                                 </div>
 
 

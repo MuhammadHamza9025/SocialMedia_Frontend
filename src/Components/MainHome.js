@@ -90,7 +90,6 @@ const MainHome = ({ data }) => {
     useEffect(() => {
         if (localStorage.getItem('auth-token')) { getallposts() }
 
-        // console.log(useridfordelete)
 
     }, [])
     useEffect(() => {

@@ -17,7 +17,14 @@ const UserDetails = () => {
     const [userdetails, setdetails] = useState([])
     const fetchuserdetailsdata = async () => {
 
-        const data = await fetch(`http://localhost:9000/user/${id}`)
+        const data = await fetch(`http://localhost:9000/user/${id}`, {
+            method: 'POST',
+
+            headers: {
+                'Content-Type': 'application/json',
+                "auth-token": `${localStorage.getItem('auth-token')}`,
+            }
+        })
         const res = await data.json()
         setdetails(Array(res))
         console.log(Array(res.userdetails))
@@ -175,9 +182,9 @@ const UserDetails = () => {
 
 
             <div className='absolute  h-[500px'>
-                {
-                    <Contact_info setconat={setclick} contact={contact} ></Contact_info>
-                }
+
+                <Contact_info setconat={setclick} contact={contact} ></Contact_info>
+
             </div>
 
 
