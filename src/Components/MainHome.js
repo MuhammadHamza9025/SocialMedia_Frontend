@@ -126,7 +126,7 @@ const MainHome = ({ data }) => {
 
                         return (
                             <>
-                                <div className='border m-4     mt-10 bg-[#ffffff] rounded-lg'>
+                                <div className='border m-4     mt-10  rounded-lg'>
                                     <div className=' flex justify-between'>
                                         <div className='flex items-center mb-1'>
                                             <img className='m-4 w-[50px] h-[50px] rounded-full' src={item.postedby.image} alt="" />
@@ -136,11 +136,11 @@ const MainHome = ({ data }) => {
                                         {useridfordelete == item.postedby.id &&
                                             <div className='flex flex-col items-end  m-4  relative' onClick={() => setdeletemenu(!deletemenu)} >
                                                 <div className='mx-2 cursor-pointer '  >
-                                                    <button className='h-[6px] w-[6px] rounded-full bg-black'></button>
-                                                    <button className=' mx-1 h-[6px] w-[6px] rounded-full bg-black'></button>
-                                                    <button className='h-[6px] w-[6px] rounded-full bg-black'></button>
+                                                    <button className='h-[6px] w-[6px] rounded-full '></button>
+                                                    <button className=' mx-1 h-[6px] w-[6px] rounded-full '></button>
+                                                    <button className='h-[6px] w-[6px] rounded-full '></button>
                                                 </div>
-                                                <div className={`${deletemenu ? 'flex' : 'hidden'}  absolute top-7 flex-col  bg-slate-100 text-xs  border px-4`} >
+                                                <div className={`${deletemenu ? 'flex' : 'hidden'}  absolute top-7 flex-col   text-xs  border px-4`} >
                                                     <span className='p-1  cursor-pointer hover:font-bold     border-b-2 my-2' onClick={() => handledelete(item._id)}>Delete</span>
                                                     <span className='p-1 cursor-pointer hover:font-bold '>Edit</span>
                                                 </div>
@@ -166,8 +166,11 @@ const MainHome = ({ data }) => {
                                             {item.comment.map((e) => {
 
                                                 return (
-                                                    <div className='flex flex-col  border bg-slate-400 m-1 my-2 p-2 bg-opacity-25'>
-                                                        <p className='text-lg font-semibold'>{e.user.name}</p>
+                                                    <div className='flex flex-col  border  m-1 my-2 p-2 bg-opacity-25 bg-slate-200 rounded-lg'>
+                                                        <div className=' flex items-center space-x-2'>
+                                                            <p className='text-lg font-semibold'>{e.user.name}</p>
+
+                                                        </div>
                                                         <p>{e.text}</p>
 
 

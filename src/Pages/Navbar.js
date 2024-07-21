@@ -1,23 +1,38 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import SearchUsers from '../Components/SearchUsers'
+import LightModeIcon from '@mui/icons-material/LightMode';
+import NightlightRoundIcon from '@mui/icons-material/NightlightRound';
 
 
 const Navbar = () => {
+    const [isDark, setisdark] = useState(false)
     const [search, setsearch] = useState('')
     const [open, setopen] = useState(false)
+    useEffect(() => {
+        if (isDark) {
+            document.body.classList.add('dark-theme');
+            document.body.classList.remove('light-theme');
+        } else {
+            document.body.classList.add('light-theme');
+            document.body.classList.remove('dark-theme');
+        }
+    }, [isDark]);
+    function handle() {
+        setisdark(!isDark)
+    }
 
     return (
         <>
-            <div className='flex justify-around p-4  font-semibold font-sans bg-white'>
-                <div><span className='font-bold text-lg border p-2 bg-gray-200 rounded-lg  bg-opacity-50 cursor-pointer hover:bg-gray-500 hover:text-yellow-50'>LINKBOOK</span></div>
+            <div className='flex justify-around p-4  font-semibold font-sans border-b'>
+                <div><span className='font-bold text-lg border p-2 rounded-lg  bg-opacity-50 cursor-pointer hover:bg-gray-500 hover:text-yellow-50'>LINKBOOK</span></div>
                 {localStorage.getItem('auth-token') &&
                     <div className=' rounded-3xl relative'>
 
                         <input type="text" value={search} placeholder='Search...' className=' text-sm  font-mono p-2 outline-none border border-black active:border-none rounded-md' onChange={((e) => setsearch(e.target.value))} />
                         {
                             search.length > 0 &&
-                            <div className='absolute rounded-md border w-[400px] bg-slate-100 p-4'>
+                            <div className={`absolute rounded-md border w-[400px]   z-20 p-4 ${isDark ? 'bg-black' : 'bg-white'}`}>
 
 
 
@@ -40,6 +55,12 @@ const Navbar = () => {
 
                     </ul>
                 </div >
+                <div className='flex justify-center items-center  rounded-full '>
+                    {
+                        isDark ? <LightModeIcon onClick={handle} />
+                            :
+                            <NightlightRoundIcon onClick={handle} ></NightlightRoundIcon>}
+                </div>
             </div >
         </>
     )

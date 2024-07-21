@@ -21,7 +21,7 @@ const Home = () => {
     }, [])
     return (
         <>
-            <div className='flex justify-between px-10 bg-[#f4f2ee]'>
+            <div className='flex justify-between px-10 '>
                 <Homeleft data={data}></Homeleft>
                 <MainHome data={data}></MainHome>
                 <HomeRight></HomeRight>

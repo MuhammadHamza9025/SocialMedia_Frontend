@@ -8,7 +8,6 @@ const SearchUsers = ({ search, setsearch }) => {
             const data = await fetch(`http://localhost:9000/getallusers`)
             const users = await data.json()
             setusers(users)
-            console.log(users)
         }
         getallusers()
     }, [search.length > 0])
@@ -39,3 +38,6 @@ const SearchUsers = ({ search, setsearch }) => {
 }
 
 export default SearchUsers
+
+
+// this is user12233klnk

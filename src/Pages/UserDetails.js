@@ -75,16 +75,16 @@ const UserDetails = () => {
         <div className='flex flex-col items-center'>
 
 
-            <div className='bg-white relative w-[800px] h-[400px] my-10'>
+            <div className=' relative w-[800px] h-[400px] my-10 border'>
 
                 {userdetails.map((e) => {
 
                     return (
                         <>
-                            <div className='h-[60%]'><img className='w-[100%] h-[100%] rounded-none' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSnfBD8oiQixFsc59ccAI4fSbIBvvTjUEZuw&usqp=CAU" /></div>
-                            <div className='h-[100%]  absolute top-0 p-16 flex justify-center items-center'> <div className=' h-[150px] w-[150px] border-4 border-white overflow-hidden rounded-full'><img src={e.userdetails.image || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_ISC9UU8aZv3dBBEAc23t4mzgdkPLVgpdk2ClCRapGw&s"} alt="" className='h-[100%] w-[100%]' /></div>
+                            <div className=' h-[60%]'><img className='w-[100%] h-[100%] rounded-none' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSnfBD8oiQixFsc59ccAI4fSbIBvvTjUEZuw&usqp=CAU" /></div>
+                            <div className='h-[100%]  absolute top-0 p-16 flex justify-center items-center'> <div className=' h-[150px] w-[150px] border-4 border overflow-hidden rounded-full'><img src={e.userdetails.image || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_ISC9UU8aZv3dBBEAc23t4mzgdkPLVgpdk2ClCRapGw&s"} alt="" className='h-[100%] w-[100%]' /></div>
                             </div>
-                            <div className='absolute top-0 text-white  flex w-[100%] justify-end p-5'><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" color="blue" height="20" width="20" xmlns="http://www.w3.org/2000/svg" className='p-1 h-[30px] w-[30px] rounded-full bg-white cursor-pointer' onClick={() => setprofilesetting(true)}><path onClick={() => setprofilesetting(true)} fill="none" d="M0 0h24v24H0z"></path><path d="M3 21h3.75L17.81 9.94l-3.75-3.75L3 17.25V21zm2-2.92 9.06-9.06.92.92L5.92 19H5v-.92zM18.37 3.29a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34z"></path></svg></div>
+                            <div className='absolute top-0   flex w-[100%] justify-end p-5'><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" color="blue" height="20" width="20" xmlns="http://www.w3.org/2000/svg" className='p-1 h-[30px] w-[30px] rounded-full cursor-pointer' onClick={() => setprofilesetting(true)}><path onClick={() => setprofilesetting(true)} fill="none" d="M0 0h24v24H0z"></path><path d="M3 21h3.75L17.81 9.94l-3.75-3.75L3 17.25V21zm2-2.92 9.06-9.06.92.92L5.92 19H5v-.92zM18.37 3.29a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34z"></path></svg></div>
                             <div className='mt-10   w-[300px] flex flex-col items-center'>
                                 <span className=' font-bold text-xl'>{e.userdetails.name}</span>
                                 <div className='flex px-5 mt-2'>
@@ -103,7 +103,7 @@ const UserDetails = () => {
                         </>
                     )
                 })}
-                <div className={`${profilesetting ? 'flex' : 'hidden'}  absolute  top-0  h-[100%] w-[100%]  justify-center items-center`} > <div className='bg-white w-[400px] h-[290px] rounded-lg  p-2'>
+                <div className={`${profilesetting ? 'flex' : 'hidden'}  absolute  top-0  h-[100%] w-[100%]  justify-center items-center`} > <div className=' w-[400px] h-[290px] rounded-lg  p-2'>
                     <div className='flex justify-between'>
                         <span className=' text-xl font-bold m-5'>Profile Setting</span>
                         <div className=' font-bold cursor-pointer flex justify-end text-gray-600  ' onClick={() => setprofilesetting(false)}>X</div>
@@ -118,10 +118,10 @@ const UserDetails = () => {
 
             </div>
 
-            <div className='bg-white w-[800px] h-[200px] rounded-md  relative'>
-                <div className='flex justify-between'>
+            <div className='e w-[800px] h-[200px] rounded-md  relative border' >
+                <div className='flex justify-between '>
                     <h2 className='text-2xl font-bold m-4  w-[300px]'> Your Interests</h2>
-                    <div className=' text-white  flex w-[100%] justify-end p-5'><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" color="blue" height="20" width="20" xmlns="http://www.w3.org/2000/svg" className='p-1 h-[30px] w-[30px] rounded-full bg-white cursor-pointer' onClick={() => setintopen(true)}><path onClick={() => setintopen(true)} fill="none" d="M0 0h24v24H0z"></path><path d="M3 21h3.75L17.81 9.94l-3.75-3.75L3 17.25V21zm2-2.92 9.06-9.06.92.92L5.92 19H5v-.92zM18.37 3.29a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34z"></path></svg></div>
+                    <div className=' text-white  flex w-[100%] justify-end p-5'><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" color="blue" height="20" width="20" xmlns="http://www.w3.org/2000/svg" className='p-1 h-[30px] w-[30px] rounded-full  cursor-pointer' onClick={() => setintopen(true)}><path onClick={() => setintopen(true)} fill="none" d="M0 0h24v24H0z"></path><path d="M3 21h3.75L17.81 9.94l-3.75-3.75L3 17.25V21zm2-2.92 9.06-9.06.92.92L5.92 19H5v-.92zM18.37 3.29a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34z"></path></svg></div>
 
                 </div>
                 <div className=' flex flex-col'>

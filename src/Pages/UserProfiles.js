@@ -70,7 +70,7 @@ const UserProfiles = () => {
     }, [])
     return (
         <>
-            <div className='flex  py-10 border px-6 bg-white'>
+            <div className='flex  py-10 border-b px-6'>
                 {
                     userdetails.map((e) => {
                         return (
@@ -85,7 +85,7 @@ const UserProfiles = () => {
                                         <span></span>
                                     </div>
                                     {e.check == false && <button onClick={() => follow(e.userdetails._id)} className='border rounded-3xl p-1 mt-6   font-semibold bg-opacity-80 px-4'>Follow</button>}
-                                    {e.check == true && <button onClick={() => follow(e.userdetails._id)} className='border rounded-3xl p-1 mt-6 bg-green-600 text-white font-semibold bg-opacity-80 px-4'>Following</button>}
+                                    {e.check == true && <button onClick={() => follow(e.userdetails._id)} className='border rounded-3xl p-1 mt-6 bg-green-600  font-semibold bg-opacity-80 px-4'>Following</button>}
                                 </div>
 
 
