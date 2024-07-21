@@ -14,7 +14,7 @@ const Addpost = () => {
             formData.append('desc', desc)
             formData.append('image', image)
 
-            const postdatagive = await fetch('http://localhost:9000/post', {
+            const postdatagive = await fetch('https://social-media-backend-psi-five.vercel.app/post', {
                 method: "POST",
                 headers: {
                     "auth-token": `${localStorage.getItem('auth-token')}`

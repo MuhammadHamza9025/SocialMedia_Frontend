@@ -5,7 +5,7 @@ const HomeRight = () => {
     const [allusers, setallusers] = useState([])
 
     const getallusers = async () => {
-        const fetusers = await fetch('http://localhost:9000/otherusers', {
+        const fetusers = await fetch('https://social-media-backend-psi-five.vercel.app/otherusers', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

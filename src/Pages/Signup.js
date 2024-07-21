@@ -15,7 +15,7 @@ const Signup = () => {
         formData.append('email', email)
         formData.append('password', password)
         formData.append('image', image)
-        const enterdata = await fetch('http://localhost:9000/signup', {
+        const enterdata = await fetch('https://social-media-backend-psi-five.vercel.app/signup', {
             method: "POST",
             headers: {
 

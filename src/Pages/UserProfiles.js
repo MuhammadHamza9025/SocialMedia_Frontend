@@ -10,7 +10,7 @@ const UserProfiles = () => {
     const { id } = useParams()
     const [userdetails, setdetails] = useState([])
     const fetchuserdetailsdata = async () => {
-        const data = await fetch(`http://localhost:9000/user/${id}`, {
+        const data = await fetch(`https://social-media-backend-psi-five.vercel.app/user/${id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -31,7 +31,7 @@ const UserProfiles = () => {
         // console.log(id)
         let msg;
 
-        const data = await fetch(`http://localhost:9000/follow`, {
+        const data = await fetch(`https://social-media-backend-psi-five.vercel.app/follow`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const UserProfiles = () => {
     }
 
     // const textfol = async () => {
-    //     const data = await fetch(`http://localhost:9000/followtext`, {
+    //     const data = await fetch(`https://social-media-backend-psi-five.vercel.app/followtext`, {
 
     //         headers: {
     //             "Content-Type": "application/json",

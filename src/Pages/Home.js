@@ -6,7 +6,7 @@ const Home = () => {
     const [data, setdata] = useState([])
 
     const fetchdata = async () => {
-        const fetchnn = await fetch("http://localhost:9000/login", {
+        const fetchnn = await fetch("https://social-media-backend-psi-five.vercel.app/login", {
             headers: {
                 "auth-token": `${localStorage.getItem('auth-token')}`
             }

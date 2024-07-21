@@ -17,7 +17,7 @@ const UserDetails = () => {
     const [userdetails, setdetails] = useState([])
     const fetchuserdetailsdata = async () => {
 
-        const data = await fetch(`http://localhost:9000/user/${id}`, {
+        const data = await fetch(`https://social-media-backend-psi-five.vercel.app/user/${id}`, {
             method: 'POST',
 
             headers: {
@@ -37,7 +37,7 @@ const UserDetails = () => {
         formdata.append('image', image)
         console.log(image)
 
-        const data = await fetch(`http://localhost:9000/profileedit`, {
+        const data = await fetch(`https://social-media-backend-psi-five.vercel.app/profileedit`, {
             method: "POST",
             headers: {
                 "auth-token": `${localStorage.getItem('auth-token')}`,
@@ -53,7 +53,7 @@ const UserDetails = () => {
 
         const data = { interests }
         console.log(data)
-        const intfetch = await fetch('http://localhost:9000/interests', {
+        const intfetch = await fetch('https://social-media-backend-psi-five.vercel.app/interests', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

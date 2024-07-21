@@ -14,7 +14,7 @@ const MainHome = ({ data }) => {
 
 
         ////////////////////////api for post showing
-        const ftetc = await fetch('http://localhost:9000/post', {
+        const ftetc = await fetch('https://social-media-backend-psi-five.vercel.app/post', {
             headers: {
                 "auth-token": `${localStorage.getItem('auth-token')}`
             },
@@ -30,7 +30,7 @@ const MainHome = ({ data }) => {
     let message;
     const getliked = async (id) => {
 
-        const fetchdata = await fetch("http://localhost:9000/getlikes", {
+        const fetchdata = await fetch("https://social-media-backend-psi-five.vercel.app/getlikes", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -55,7 +55,7 @@ const MainHome = ({ data }) => {
 
         posts.map((e) => e.comment.map((ee) => console.log(ee.user.email)))
         setpost(comment)
-        const fetchdata = await fetch("http://localhost:9000/getcomment", {
+        const fetchdata = await fetch("https://social-media-backend-psi-five.vercel.app/getcomment", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -103,7 +103,7 @@ const MainHome = ({ data }) => {
     }
 
     const handledelete = async (id) => {
-        const fetchdata = await fetch("http://localhost:9000/deleteposts", {
+        const fetchdata = await fetch("https://social-media-backend-psi-five.vercel.app/deleteposts", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

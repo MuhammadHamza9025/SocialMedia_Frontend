@@ -9,7 +9,7 @@ const Login = () => {
     let messagedata;
     const handle = async () => {
         const data = { email, password }
-        const enterlogindata = await fetch('http://localhost:9000/login', {
+        const enterlogindata = await fetch('https://social-media-backend-psi-five.vercel.app/login', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

@@ -5,7 +5,7 @@ const SearchUsers = ({ search, setsearch }) => {
 
     useEffect(() => {
         const getallusers = async () => {
-            const data = await fetch(`http://localhost:9000/getallusers`)
+            const data = await fetch(`https://social-media-backend-psi-five.vercel.app/getallusers`)
             const users = await data.json()
             setusers(users)
         }

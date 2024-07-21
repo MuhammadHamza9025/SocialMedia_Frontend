@@ -11,7 +11,7 @@ const Contact_info = ({ setconat, contact }) => {
     const handlecontact = async () => {
         let messa;
         const data = { city, country, link, email }
-        const fetchdata = await fetch('http://localhost:9000/contact', {
+        const fetchdata = await fetch('https://social-media-backend-psi-five.vercel.app/contact', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
