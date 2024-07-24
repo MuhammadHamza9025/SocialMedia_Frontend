@@ -154,13 +154,13 @@ const MainHome = ({ data }) => {
                                     <div className='flex justify-between mt-8'>
                                         <span className=' cursor-pointer' onClick={() => getliked(item._id)}><img src={image} className='h-[30px] mx-2' alt="" />
                                             <p className='mx-2 my-1 font-bold'>{item.likedby.length} Likes </p></span>
-                                        <span className='hover:bg-slate-300 flex items-center p-1 px-2 active:bg-slate-400 rounded-3xl'>{item.comment.length}<b className='cursor-pointer mx-2 ' onClick={() => setcommentopen(commentopen === item._id ? null : item._id)}>Comments</b></span>
+                                        <span className='hover:bg-slate-300 flex items-center sm:p-1 sm:px-2 active:bg-slate-400 rounded-xl sm:text-balance text-xs'>{item.comment.length}<b className='cursor-pointer mx-2 ' onClick={() => setcommentopen(commentopen === item._id ? null : item._id)}>Comments</b></span>
                                     </div>
 
                                     <div className={` ${commentopen ? 'flex-col scroll-smooth' : 'hidden'}`}>
                                         <div className={`m-3 my-6 transition flex justify-around `} >
-                                            <input type="text" placeholder='Enter your coment' className='border-2 outline-none w-[70%] p-2 rounded-full text-gray-700 text-sm' value={comment} onChange={(e) => setcomment(e.target.value)} />
-                                            <button className='bg-blue-500 text-white font-semibold w-[100px] p-2 py-1.5 rounded-full' onClick={() => getcomment(item._id)} >Post</button>
+                                            <input type="text" placeholder='Enter your coment' className='border-2 outline-none sm:w-[70%]  p-1 sm:p-2 rounded-full text-gray-700 text-xs sm:text-sm' value={comment} onChange={(e) => setcomment(e.target.value)} />
+                                            <button className='bg-blue-500 text-white font-semibold w-[60px]  text-sm sm:text-balance sm:w-[100px] sm:p-2 py-1.5 rounded-full' onClick={() => getcomment(item._id)} >Post</button>
                                         </div>
                                         <div className='mt-10 px-6 '>
                                             {item.comment.map((e) => {
