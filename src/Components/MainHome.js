@@ -120,7 +120,7 @@ const MainHome = ({ data }) => {
 
     return (
         <>
-            <div className='w-[49%] max-h-[100%]'>
+            <div className='sm:w-[49%] max-h-[100%]'>
                 {
                     posts.map((item, index) => {
 
