@@ -32,9 +32,9 @@ const PostsDetails = ({ item, data }) => {
                 {useridfordelete == item.postedby.id &&
                     <div className='flex flex-col items-end  m-4  relative' onClick={() => setdeletemenu(!deletemenu)} >
                         <div className='mx-2 cursor-pointer '  >
-                            <button className='h-[6px] w-[6px] rounded-full '></button>
-                            <button className=' mx-1 h-[6px] w-[6px] rounded-full '></button>
-                            <button className='h-[6px] w-[6px] rounded-full '></button>
+                            <button className='h-[6px] w-[6px] rounded-full  border-2 border'></button>
+                            <button className=' mx-1 h-[6px] w-[6px] rounded-full   border-2'></button>
+                            <button className='h-[6px] w-[6px] rounded-full  border-2'></button>
                         </div>
                         <div className={`${deletemenu ? 'flex' : 'hidden'}  absolute top-7 flex-col   text-xs  border px-4`} >
                             <span className='p-1  cursor-pointer hover:font-bold     border-b-2 my-2' onClick={() => handledelete(item._id)}>Delete</span>

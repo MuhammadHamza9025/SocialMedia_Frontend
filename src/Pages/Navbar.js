@@ -24,7 +24,7 @@ const Navbar = () => {
 
     return (
         <>
-            <div className='flex justify-around p-4  font-semibold font-sans border-b hidden'>
+            <div className='flex justify-around p-4  font-semibold font-sans border-b '>
                 <div><span className='font-bold text-lg border p-2 rounded-lg  bg-opacity-50 cursor-pointer hover:bg-gray-500 hover:text-yellow-50'>LINKBOOK</span></div>
                 {localStorage.getItem('auth-token') &&
                     <div className=' rounded-3xl relative'>

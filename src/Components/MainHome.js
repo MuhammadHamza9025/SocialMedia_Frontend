@@ -4,6 +4,7 @@ import image from '../Assests/images.png'
 import PostsDetails from './PostsDetails'
 import Home from '../Pages/Home'
 import { type } from '@testing-library/user-event/dist/type'
+import Loader from './Loader'
 const MainHome = ({ data }) => {
     const initialState = {
         type: 'notready',
@@ -112,14 +113,24 @@ const MainHome = ({ data }) => {
         <>
             {
                 posts.type == 'notready' ?
-                    <div class="flex items-center justify-center h-screen">
-                        <div class="relative">
-                            <div class="h-24 w-24 rounded-full border-t-8 border-b-8 border-gray-200"></div>
-                            <div class="absolute top-0 left-0 h-24 w-24 rounded-full border-t-8 border-b-8 border-blue-500 animate-spin">
+                    <div class="bg-gray-100 flex items-center justify-center w-[350px] mt-10 p-10">
+                        <div role="status" class="space-y-8 animate-pulse  max-w-2xl p-4">
+                            <div class="w-full space-y-2 ">
+                                <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
+                                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+                                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
+                                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
+                                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
                             </div>
+                            <div class="flex items-center justify-center w-full h-48 bg-gray-300 rounded dark:bg-gray-700">
+                                <svg class="w-10 h-10 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                                    <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
+                                </svg>
+                            </div>
+                            <span class="sr-only">Loading...</span>
                         </div>
-                    </div>
-                    :
+                    </div> :
                     <div className='min-w-[100%] sm:w-[49%] max-h-[100%]'>
                         {
                             posts.data.map((item, index) => {
@@ -137,7 +148,7 @@ const MainHome = ({ data }) => {
                                             </div>
 
 
-                                            <div className={` ${selectindex === index ? 'flex-col scroll-smooth' : 'hidden'}`}>
+                                            <div className={`${selectindex === index ? 'flex-col scroll-smooth' : 'hidden'}`}>
                                                 <div className={`m-3 my-6 transition flex justify-around `} >
                                                     <input type="text" placeholder='Enter your coment' className='border-2 outline-none md:w-[70%]  p-1 md:p-2 rounded-full text-gray-700 text-xs md:text-sm' value={comment} onChange={(e) => setcomment(e.target.value)} />
                                                     <button className='bg-blue-500 text-white font-semibold w-[60px]  text-sm md:text-balance md:w-[100px] md:p-2 py-1.5 rounded-full' onClick={() => getcomment(item._id)} >Post</button>
