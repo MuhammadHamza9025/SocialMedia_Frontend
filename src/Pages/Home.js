@@ -19,6 +19,7 @@ const Home = () => {
     useEffect(() => {
         fetchdata()
     }, [])
+
     return (
         <>
             <div className='flex md:justify-between md:px-20 flex-col md:flex-row  '>
@@ -26,6 +27,18 @@ const Home = () => {
                 <div className='order-3 md:order-2'> <MainHome data={data}></MainHome> </div>
                 <div className='order-2 md:order-3 w-[100%] md:w-[40%]  md:h-[600px]'> <HomeRight></HomeRight></div>
             </div>
+            {/* <div className="flex flex-col items-center mt-5">
+                {numbers.map((number, index) => (
+                    <button
+                        key={index}
+                        onClick={() => setSelectedIndex(index)}
+                        className={`text-lg p-2 m-2 transition-colors duration-300 ${selectedIndex === index ? 'text-red-500' : 'text-black'
+                            }`}
+                    >
+                        {number}
+                    </button>
+                ))}
+            </div> */}
         </>
     )
 }

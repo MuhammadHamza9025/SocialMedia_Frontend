@@ -9,7 +9,7 @@ const Homeleft = ({ data }) => {
             {data.map((item) => {
 
                 return (
-                    <>
+                    <React.Fragment key={item._id}>
                         <Link to={`/user/${item._id}`}>
                             <div className={` w-[100%] md:w-[250px] md:h-[600px]   flex flex-col items-center border shadow-sm shadow-gray-50 rounded-md p-2`}>
 
@@ -20,7 +20,7 @@ const Homeleft = ({ data }) => {
                                     <p><b className='font-bold'>{item.followers ? item.followers.length : '0'} </b>followers</p>
                                 </div>
                             </div></Link>
-                    </>
+                    </React.Fragment>
                 )
             })}
 

@@ -1,15 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import { Link } from 'react-router-dom'
 import image from '../Assests/images.png'
-
+import PostsDetails from './PostsDetails'
+import Home from '../Pages/Home'
+import { type } from '@testing-library/user-event/dist/type'
 const MainHome = ({ data }) => {
+    const initialState = {
+        type: 'notready',
+        data: []
+    }
+    const reducer = (state, action) => {
+        switch (action.type) {
+            case 'notready': { return { ...state, data: [] } }
+            case 'ready': { return { ...state, type: 'ready', data: action.payload } }
 
-    const [posts, setposts] = useState([])
+        }
+    }
+
+    const [posts, dispatch] = useReducer(reducer, initialState)
     const [comment, setcomment] = useState('')
     const [post, setpost] = useState('')
     const [commentopen, setcommentopen] = useState(null)
-    const [iid, setid] = useState()
-    const [deletemenu, setdeletemenu] = useState(false)
+    const [selectindex, setselectindex] = useState(null)
     const getallposts = async () => {
 
 
@@ -20,7 +32,7 @@ const MainHome = ({ data }) => {
             },
         })
         const res = await ftetc.json()
-        setposts(res)
+        dispatch({ type: 'ready', payload: res })
 
 
 
@@ -50,10 +62,9 @@ const MainHome = ({ data }) => {
         }
     }
     /////////////////////api for comments
-
     const getcomment = async (id) => {
 
-        posts.map((e) => e.comment.map((ee) => console.log(ee.user.email)))
+        posts.data.map((e) => e.comment.map((ee) => console.log(ee.user.email)))
         setpost(comment)
         const fetchdata = await fetch("https://social-media-backend-psi-five.vercel.app/getcomment", {
             method: "POST",
@@ -70,6 +81,7 @@ const MainHome = ({ data }) => {
 
         if (message.success) {
             alert(message.message)
+
         }
         else {
             alert(message.error)
@@ -79,19 +91,11 @@ const MainHome = ({ data }) => {
 
 
     let commentid;
-
-
-
-
-
-
-
-
     useEffect(() => {
         if (localStorage.getItem('auth-token')) { getallposts() }
 
 
-    }, [])
+    }, [Home])
     useEffect(() => {
         getallposts()
 
@@ -102,92 +106,69 @@ const MainHome = ({ data }) => {
         commentid = id
     }
 
-    const handledelete = async (id) => {
-        const fetchdata = await fetch("https://social-media-backend-psi-five.vercel.app/deleteposts", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "auth-token": `${localStorage.getItem('auth-token')}`,
-            },
-            body: JSON.stringify({ id: id })
 
-
-
-        })
-
-    }
-    const useridfordelete = data.map((e) => e.id)
 
     return (
         <>
-            <div className='min-w-[100%] sm:w-[49%] max-h-[100%]'>
-                {
-                    posts.map((item, index) => {
+            {
+                posts.type == 'notready' ?
+                    <div class="flex items-center justify-center h-screen">
+                        <div class="relative">
+                            <div class="h-24 w-24 rounded-full border-t-8 border-b-8 border-gray-200"></div>
+                            <div class="absolute top-0 left-0 h-24 w-24 rounded-full border-t-8 border-b-8 border-blue-500 animate-spin">
+                            </div>
+                        </div>
+                    </div>
+                    :
+                    <div className='min-w-[100%] sm:w-[49%] max-h-[100%]'>
+                        {
+                            posts.data.map((item, index) => {
 
-                        return (
-                            <>
-                                <div className='border  m-1 md:m-4     mt-10  rounded-lg'>
-                                    <div className=' flex justify-between'>
-                                        <div className='flex items-center mb-1'>
-                                            <img className='m-4 w-[50px] h-[50px] rounded-full' src={item.postedby.image} alt="" />
-                                            <Link to={`/users/${item.postedby._id}`}> <span className=''>{item.postedby.name}</span></Link>
-                                        </div>
-                                        {/*  */}
-                                        {useridfordelete == item.postedby.id &&
-                                            <div className='flex flex-col items-end  m-4  relative' onClick={() => setdeletemenu(!deletemenu)} >
-                                                <div className='mx-2 cursor-pointer '  >
-                                                    <button className='h-[6px] w-[6px] rounded-full '></button>
-                                                    <button className=' mx-1 h-[6px] w-[6px] rounded-full '></button>
-                                                    <button className='h-[6px] w-[6px] rounded-full '></button>
+                                return (
+                                    <React.Fragment key={item._id}>
+                                        <div className='border  m-1 md:m-4     mt-10  rounded-lg'>
+                                            <PostsDetails item={item} data={data}></PostsDetails>
+
+
+                                            <div className='flex justify-between mt-8'>
+                                                <span className=' cursor-pointer' onClick={() => getliked(item._id)}><img src={image} className='h-[30px] mx-2' alt="" />
+                                                    <p className='mx-2 my-1 font-bold'>{item.likedby.length} Likes </p></span>
+                                                <span className=' flex items-center md:p-1 md:px-2 active:bg-slate-400 rounded-xl md:text-balance text-xs'>{item.comment.length}<b className='cursor-pointer mx-2 ' onClick={() => setselectindex(index)}>Comments</b></span>
+                                            </div>
+
+
+                                            <div className={` ${selectindex === index ? 'flex-col scroll-smooth' : 'hidden'}`}>
+                                                <div className={`m-3 my-6 transition flex justify-around `} >
+                                                    <input type="text" placeholder='Enter your coment' className='border-2 outline-none md:w-[70%]  p-1 md:p-2 rounded-full text-gray-700 text-xs md:text-sm' value={comment} onChange={(e) => setcomment(e.target.value)} />
+                                                    <button className='bg-blue-500 text-white font-semibold w-[60px]  text-sm md:text-balance md:w-[100px] md:p-2 py-1.5 rounded-full' onClick={() => getcomment(item._id)} >Post</button>
                                                 </div>
-                                                <div className={`${deletemenu ? 'flex' : 'hidden'}  absolute top-7 flex-col   text-xs  border px-4`} >
-                                                    <span className='p-1  cursor-pointer hover:font-bold     border-b-2 my-2' onClick={() => handledelete(item._id)}>Delete</span>
-                                                    <span className='p-1 cursor-pointer hover:font-bold '>Edit</span>
+                                                <div className='mt-10 px-6 '>
+                                                    {item.comment.map((e, i) => {
+
+                                                        return (
+                                                            <div className='flex flex-col  border  m-1 my-2 p-2 bg-opacity-25 bg-slate-200 rounded-lg' key={i}>
+                                                                <div className=' flex items-center space-x-2'>
+                                                                    <p className='text-lg font-semibold'>{e.user.name}</p>
+
+                                                                </div>
+                                                                <p>{e.text}</p>
+
+
+                                                            </div>
+
+                                                        )
+                                                    })}
+
+
                                                 </div>
                                             </div>
-                                        }
-                                    </div>
-
-                                    <p className='my-2 mx-4 mt-3 font-semibold text-lg '>{item.title}</p>
-                                    <p className=' p-2 md:mx-4w-[100%] mb-6'>{item.desc}</p>
-                                    <img src={item.image} className='min-w-[100%] h-[300px] sm:max-h-[700px] sm:min-h-[550px] object-cover object-center sm:object-contain' alt="" />
-                                    <div className='flex justify-between mt-8'>
-                                        <span className=' cursor-pointer' onClick={() => getliked(item._id)}><img src={image} className='h-[30px] mx-2' alt="" />
-                                            <p className='mx-2 my-1 font-bold'>{item.likedby.length} Likes </p></span>
-                                        <span className='hover:bg-slate-300 flex items-center md:p-1 md:px-2 active:bg-slate-400 rounded-xl md:text-balance text-xs'>{item.comment.length}<b className='cursor-pointer mx-2 ' onClick={() => setcommentopen(commentopen === item._id ? null : item._id)}>Comments</b></span>
-                                    </div>
-
-                                    <div className={` ${commentopen ? 'flex-col scroll-smooth' : 'hidden'}`}>
-                                        <div className={`m-3 my-6 transition flex justify-around `} >
-                                            <input type="text" placeholder='Enter your coment' className='border-2 outline-none md:w-[70%]  p-1 md:p-2 rounded-full text-gray-700 text-xs md:text-sm' value={comment} onChange={(e) => setcomment(e.target.value)} />
-                                            <button className='bg-blue-500 text-white font-semibold w-[60px]  text-sm md:text-balance md:w-[100px] md:p-2 py-1.5 rounded-full' onClick={() => getcomment(item._id)} >Post</button>
-                                        </div>
-                                        <div className='mt-10 px-6 '>
-                                            {item.comment.map((e) => {
-
-                                                return (
-                                                    <div className='flex flex-col  border  m-1 my-2 p-2 bg-opacity-25 bg-slate-200 rounded-lg'>
-                                                        <div className=' flex items-center space-x-2'>
-                                                            <p className='text-lg font-semibold'>{e.user.name}</p>
-
-                                                        </div>
-                                                        <p>{e.text}</p>
-
-
-                                                    </div>
-
-                                                )
-                                            })}
-
-
-                                        </div>
-                                    </div>
-                                </div >
-                            </>
-                        )
-                    })
-                }
-            </div >
+                                        </div >
+                                    </React.Fragment>
+                                )
+                            })
+                        }
+                    </div >
+            }
         </>
     )
 }

@@ -29,7 +29,7 @@ const HomeRight = () => {
                     {
                         allusers.map((e) => {
                             return (
-                                <>
+                                <React.Fragment key={e._id}>
 
                                     <Link to={`/users/${e._id}`}>
                                         <div className='flex cursor-pointer md:flex-row flex-col items-center justify-center p-2 m-4'>
@@ -40,7 +40,7 @@ const HomeRight = () => {
 
                                         </div>
                                     </Link>
-                                </>
+                                </React.Fragment>
                             )
                         })
                     }
