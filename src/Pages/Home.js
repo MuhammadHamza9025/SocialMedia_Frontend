@@ -21,10 +21,10 @@ const Home = () => {
     }, [])
     return (
         <>
-            <div className='flex justify-between px-10 '>
-                <Homeleft data={data}></Homeleft>
-                <MainHome data={data}></MainHome>
-                <HomeRight></HomeRight>
+            <div className='flex sm:justify-between px-6 sm:px-10 flex-col sm:flex-row  '>
+                <div className='order-1 sm:order-1'> <Homeleft data={data} ></Homeleft></div>
+                <div className='order-3 sm:order-2'> <MainHome data={data}></MainHome> </div>
+                <div className='order-2 sm:order-3'> <HomeRight></HomeRight></div>
             </div>
         </>
     )

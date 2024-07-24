@@ -21,7 +21,7 @@ const HomeRight = () => {
     }, [])
     return (
         <>
-            <div className='border w-[25%] h-[600px] mr-3 rounded-lg  mt-10'>
+            <div className='border w-[100%] sm:w-[25%] sm:h-[600px] mr-3 rounded-lg  mt-10'>
                 <h2 className='my-10 font-bold text-lg text-center'>Add to your Friend List</h2>
 
                 {/*  */}
