@@ -120,7 +120,7 @@ const MainHome = ({ data }) => {
 
     return (
         <>
-            <div className='min-w-[100%] md:w-[49%] max-h-[100%]'>
+            <div className='min-w-[100%] sm:w-[49%] max-h-[100%]'>
                 {
                     posts.map((item, index) => {
 
@@ -149,8 +149,8 @@ const MainHome = ({ data }) => {
                                     </div>
 
                                     <p className='my-2 mx-4 mt-3 font-semibold text-lg '>{item.title}</p>
-                                    <p className=' p-2 md:mx-4 w-[100%] mb-6'>{item.desc}</p>
-                                    <img src={item.image} className='w-[100%]   object-center object-contain' alt="" />
+                                    <p className=' p-2 md:mx-4w-[100%] mb-6'>{item.desc}</p>
+                                    <img src={item.image} className='min-w-[100%] h-[300px] sm:max-h-[700px] sm:min-h-[550px] object-cover object-center sm:object-contain' alt="" />
                                     <div className='flex justify-between mt-8'>
                                         <span className=' cursor-pointer' onClick={() => getliked(item._id)}><img src={image} className='h-[30px] mx-2' alt="" />
                                             <p className='mx-2 my-1 font-bold'>{item.likedby.length} Likes </p></span>
