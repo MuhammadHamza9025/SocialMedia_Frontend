@@ -75,7 +75,7 @@ const UserDetails = () => {
         <div className='flex flex-col items-center'>
 
 
-            <div className=' relative w-[800px] h-[400px] my-10 border'>
+            <div className=' relative w-[100%] sm:w-[800px] h-[300px] sm:h-[400px] my-10 border'>
 
                 {userdetails.map((e) => {
 
@@ -118,9 +118,10 @@ const UserDetails = () => {
 
             </div>
 
-            <div className='e w-[800px] h-[200px] rounded-md  relative border' >
+
+            <div className='w-[100%] sm:w-[800px] sm:h-[200px] rounded-md  relative border' >
                 <div className='flex justify-between '>
-                    <h2 className='text-2xl font-bold m-4  w-[300px]'> Your Interests</h2>
+                    <h2 className='text-lg sm:text-2xl font-bold m-4  w-[300px]'> Your Interests</h2>
                     <div className=' text-white  flex w-[100%] justify-end p-5'><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" color="blue" height="20" width="20" xmlns="http://www.w3.org/2000/svg" className='p-1 h-[30px] w-[30px] rounded-full  cursor-pointer' onClick={() => setintopen(true)}><path onClick={() => setintopen(true)} fill="none" d="M0 0h24v24H0z"></path><path d="M3 21h3.75L17.81 9.94l-3.75-3.75L3 17.25V21zm2-2.92 9.06-9.06.92.92L5.92 19H5v-.92zM18.37 3.29a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34z"></path></svg></div>
 
                 </div>
@@ -144,8 +145,8 @@ const UserDetails = () => {
                     </ul>
                 </div>
                 <div className={` ${intopen ? 'flex' : 'hidden'} absolute top-0  justify-center items-center w-[100%] h-[100%]`}>
-                    <div className='bg-gray-100 w-[400px] flex flex-col border-2 outline-none '>
-                        <div className='flex justify-between'>
+                    <div className='bg-gray-100  w-[100%] sm:w-[400px] flex flex-col border-2  outline-none '>
+                        <div className='flex justify-between border-4'>
                             <span className=' text-xl font-bold m-5'>Interestes</span>
                             <div className=' font-bold cursor-pointer flex justify-end text-gray-600  ' onClick={() => setintopen(false)}>X</div>
                         </div>
@@ -186,7 +187,6 @@ const UserDetails = () => {
                 <Contact_info setconat={setclick} contact={contact} ></Contact_info>
 
             </div>
-
 
         </div >
 

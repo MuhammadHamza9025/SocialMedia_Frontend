@@ -120,13 +120,13 @@ const MainHome = ({ data }) => {
 
     return (
         <>
-            <div className='min-w-[100%] sm:w-[49%] max-h-[100%]'>
+            <div className='min-w-[100%] md:w-[49%] max-h-[100%]'>
                 {
                     posts.map((item, index) => {
 
                         return (
                             <>
-                                <div className='border  m-1 sm:m-4     mt-10  rounded-lg'>
+                                <div className='border  m-1 md:m-4     mt-10  rounded-lg'>
                                     <div className=' flex justify-between'>
                                         <div className='flex items-center mb-1'>
                                             <img className='m-4 w-[50px] h-[50px] rounded-full' src={item.postedby.image} alt="" />
@@ -149,18 +149,18 @@ const MainHome = ({ data }) => {
                                     </div>
 
                                     <p className='my-2 mx-4 mt-3 font-semibold text-lg '>{item.title}</p>
-                                    <p className=' p-2 sm:mx-4 w-[100%] mb-6'>{item.desc}</p>
+                                    <p className=' p-2 md:mx-4 w-[100%] mb-6'>{item.desc}</p>
                                     <img src={item.image} className='w-[100%]   object-center object-contain' alt="" />
                                     <div className='flex justify-between mt-8'>
                                         <span className=' cursor-pointer' onClick={() => getliked(item._id)}><img src={image} className='h-[30px] mx-2' alt="" />
                                             <p className='mx-2 my-1 font-bold'>{item.likedby.length} Likes </p></span>
-                                        <span className='hover:bg-slate-300 flex items-center sm:p-1 sm:px-2 active:bg-slate-400 rounded-xl sm:text-balance text-xs'>{item.comment.length}<b className='cursor-pointer mx-2 ' onClick={() => setcommentopen(commentopen === item._id ? null : item._id)}>Comments</b></span>
+                                        <span className='hover:bg-slate-300 flex items-center md:p-1 md:px-2 active:bg-slate-400 rounded-xl md:text-balance text-xs'>{item.comment.length}<b className='cursor-pointer mx-2 ' onClick={() => setcommentopen(commentopen === item._id ? null : item._id)}>Comments</b></span>
                                     </div>
 
                                     <div className={` ${commentopen ? 'flex-col scroll-smooth' : 'hidden'}`}>
                                         <div className={`m-3 my-6 transition flex justify-around `} >
-                                            <input type="text" placeholder='Enter your coment' className='border-2 outline-none sm:w-[70%]  p-1 sm:p-2 rounded-full text-gray-700 text-xs sm:text-sm' value={comment} onChange={(e) => setcomment(e.target.value)} />
-                                            <button className='bg-blue-500 text-white font-semibold w-[60px]  text-sm sm:text-balance sm:w-[100px] sm:p-2 py-1.5 rounded-full' onClick={() => getcomment(item._id)} >Post</button>
+                                            <input type="text" placeholder='Enter your coment' className='border-2 outline-none md:w-[70%]  p-1 md:p-2 rounded-full text-gray-700 text-xs md:text-sm' value={comment} onChange={(e) => setcomment(e.target.value)} />
+                                            <button className='bg-blue-500 text-white font-semibold w-[60px]  text-sm md:text-balance md:w-[100px] md:p-2 py-1.5 rounded-full' onClick={() => getcomment(item._id)} >Post</button>
                                         </div>
                                         <div className='mt-10 px-6 '>
                                             {item.comment.map((e) => {

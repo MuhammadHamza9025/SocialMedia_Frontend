@@ -3,7 +3,7 @@ import React from 'react'
 const Userposts = ({ userdetails, heading }) => {
     return (
         <>
-            <h2 className='text-2xl my-10 text-center'> <b>{heading}</b> </h2 >
+            <h2 className=' text-lg sm:text-2xl my-10 text-center'> <b>{heading}</b> </h2 >
             <div className='flex w-[400px]  '>
 
                 {userdetails.map((e) => {
