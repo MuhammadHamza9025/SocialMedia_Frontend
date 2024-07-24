@@ -120,13 +120,13 @@ const MainHome = ({ data }) => {
 
     return (
         <>
-            <div className='w-[100%] sm:w-[49%] max-h-[100%]'>
+            <div className='min-w-[100%] sm:w-[49%] max-h-[100%]'>
                 {
                     posts.map((item, index) => {
 
                         return (
                             <>
-                                <div className='border m-4     mt-10  rounded-lg'>
+                                <div className='border  m-1 sm:m-4     mt-10  rounded-lg'>
                                     <div className=' flex justify-between'>
                                         <div className='flex items-center mb-1'>
                                             <img className='m-4 w-[50px] h-[50px] rounded-full' src={item.postedby.image} alt="" />
@@ -149,7 +149,7 @@ const MainHome = ({ data }) => {
                                     </div>
 
                                     <p className='my-2 mx-4 mt-3 font-semibold text-lg '>{item.title}</p>
-                                    <p className='mx-4 w-[100%] mb-6'>{item.desc}</p>
+                                    <p className=' p-2 sm:mx-4 w-[100%] mb-6'>{item.desc}</p>
                                     <img src={item.image} className='w-[100%]   object-center object-contain' alt="" />
                                     <div className='flex justify-between mt-8'>
                                         <span className=' cursor-pointer' onClick={() => getliked(item._id)}><img src={image} className='h-[30px] mx-2' alt="" />
