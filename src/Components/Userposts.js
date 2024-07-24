@@ -3,8 +3,8 @@ import React from 'react'
 const Userposts = ({ userdetails, heading }) => {
     return (
         <>
-            <h2 className=' text-lg sm:text-2xl my-10 text-center'> <b>{heading}</b> </h2 >
-            <div className='flex w-[400px]  '>
+            <h2 className=' text-lg sm:text-2xl my-10 text-center '> <b>{heading}</b> </h2 >
+            <div className='flex sm:w-[400px] flex-wrap  '>
 
                 {userdetails.map((e) => {
                     return (
@@ -15,7 +15,7 @@ const Userposts = ({ userdetails, heading }) => {
                                     return (
                                         <>
                                             <div className='border m-4   my-10 w-[100%] bg-white '>
-                                                <img src={item.image} className='w-[100%]  object-cover object-center object-fill' alt="" />
+                                                <img src={item.image} className='w-[100%] h-[300px] sm:h-[100%]  object-center object-fill' alt="" />
                                                 <p className='my-2'>{item.title}</p>
                                                 <p className='w-[100%]'>{item.desc}</p>
                                                 {/* <div className='flex justify-between mt-8'>
